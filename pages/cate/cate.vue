@@ -1,6 +1,12 @@
 <template>
   <view>
-    
+    <view class="scroll-view-container">
+      <!-- 左侧滑动区 -->
+      <scroll-view scroll-y="true" style="height:300rpx">
+        <view></view>
+      </scroll-view>
+      <!-- 右侧滑动区 -->
+    </view>
   </view>
 </template>
 
