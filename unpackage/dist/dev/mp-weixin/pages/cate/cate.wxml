@@ -1,1 +1,3 @@
-<view><view class="scroll-view-container"><scroll-view style="height:300rpx;" scroll-y="true"><view></view></scroll-view></view></view>
+<view><<<<<<< HEAD<view class="scroll-view-container"><scroll-view style="height:300rpx;" scroll-y="true"><view></view></scroll-view></view>=======
+    cate
+>>>>>>> home</view>

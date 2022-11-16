@@ -1,5 +1,6 @@
 <template>
   <view>
+<<<<<<< HEAD
     <view class="scroll-view-container">
       <!-- 左侧滑动区 -->
       <scroll-view scroll-y="true" style="height:300rpx">
@@ -7,6 +8,9 @@
       </scroll-view>
       <!-- 右侧滑动区 -->
     </view>
+=======
+    cate
+>>>>>>> home
   </view>
 </template>
 
