@@ -3,7 +3,6 @@
             "path" : "pages/home/home",
             "style" :                                                                                    
             {
-           
                 "enablePullDownRefresh": false
             }
             
@@ -61,6 +60,31 @@
       }
     ]
   },
+  "subPackages": [
+    {
+      "root":"subpkg",
+      "pages": [
+      {
+                    "path" : "goods_detail/goods_detail",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "goods_list/goods_list",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
+    }
+  ],
   "globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "野牛优购",
