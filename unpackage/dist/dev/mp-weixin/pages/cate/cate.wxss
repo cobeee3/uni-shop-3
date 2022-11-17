@@ -29,4 +29,30 @@
   -webkit-transform: translateY -50%;
           transform: translateY -50%;
 }
+.scroll-view-container .cate-lv2 .cate-lv2-title {
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  padding: 15px 0;
+}
+.scroll-view-container .cate-lv3-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.scroll-view-container .cate-lv3-list .cate-lv3-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 28%;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+.scroll-view-container .cate-lv3-list .cate-lv3-item image {
+  width: 60px;
+  height: 60px;
+}
+.scroll-view-container .cate-lv3-list .cate-lv3-item text {
+  font-size: 12px;
+}
 

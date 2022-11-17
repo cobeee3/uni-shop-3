@@ -163,59 +163,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
     return {
       wh: 0,
-      cateList: [] };
+      cateList: [],
+      active: 0,
+      cateLevel2: [],
+      cateLevel3: [],
+      scrollTop: 0 };
 
   },
   onLoad: function onLoad() {
@@ -225,11 +182,24 @@ var _default =
   },
   methods: {
     getCateList: function getCateList() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _yield$uni$$http$get, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
-                  uni.$http.get('/api/public/v1/categories'));case 2:_yield$uni$$http$get = _context.sent;res = _yield$uni$$http$get.data;
-                console.log('hello@');
-                console.log(res);if (!(
-                res.meta.status !== 200)) {_context.next = 8;break;}return _context.abrupt("return", uni.$showMsg());case 8:
-                _this.cateList = res.message;case 9:case "end":return _context.stop();}}}, _callee);}))();
+
+
+                  uni.$http.get('/api/public/v1/categories'));case 2:_yield$uni$$http$get = _context.sent;res = _yield$uni$$http$get.data;if (!(
+                res.meta.status !== 200)) {_context.next = 6;break;}return _context.abrupt("return", uni.$showMsg());case 6:
+                _this.cateList = res.message;
+                _this.cateLevel2 = _this.cateList[0].children;
+                _this.cateLevel3 = _this.cateLevel2[0].children;case 9:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    activeChange: function activeChange(i) {
+      this.active = i;
+      this.cateLevel2 = this.cateList[i].children;
+      this.cateLevel3 = this.cateLevel2[i].children;
+      this.scrollTop = this.scrollTop === 0 ? 1 : 0;
+    },
+    gotoGoodsList: function gotoGoodsList(item3) {
+      uni.navigateTo({
+        url: '/subpkg/goods_list/goods_list?cid=' + item3.cat_id });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
