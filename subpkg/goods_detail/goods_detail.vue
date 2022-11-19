@@ -1,6 +1,6 @@
 <template>
   <view>
-    
+    Detail组件
   </view>
 </template>
 
