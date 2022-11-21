@@ -1,6 +1,6 @@
 <template>
   <view>
-    
+    cart组件
   </view>
 </template>
 
