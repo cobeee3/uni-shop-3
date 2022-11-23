@@ -158,32 +158,38 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 23));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 13);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+
+
+
+
 {
   data: function data() {
     return {
@@ -195,7 +201,7 @@ var _default =
       {
         icon: 'cart',
         text: '购物车',
-        info: 2 }],
+        info: 0 }],
 
       buttonGroup: [{
         text: '加入购物车',
@@ -214,7 +220,36 @@ var _default =
     var goods_id = options.goods_id;
     this.getGoodsDetail(goods_id);
   },
-  methods: {
+  computed: _objectSpread(_objectSpread({},
+  (0, _vuex.mapState)('m_cart', [])),
+  (0, _vuex.mapGetters)('m_cart', ['total'])),
+
+  watch: {
+    total: {
+      handler: function handler(newVal) {
+        var findResult = this.options.find(function (x) {return x.text === "购物车";});
+        if (findResult) {
+          findResult.info = newVal;
+        }
+      },
+      immediate: true } },
+
+
+  methods: _objectSpread(_objectSpread({},
+  (0, _vuex.mapMutations)('m_cart', ['addToCart'])), {}, {
+    buttonClick: function buttonClick(e) {
+      if (e.content.text === "加入购物车") {
+        var goods = {
+          goods_id: this.goods_info.goods_id, // 商品的Id
+          goods_name: this.goods_info.goods_name, // 商品的名称
+          goods_price: this.goods_info.goods_price, // 商品的价格
+          goods_count: 1, // 商品的数量
+          goods_small_logo: this.goods_info.goods_small_logo, // 商品的图片
+          goods_state: true // 商品的勾选状态
+        };
+        this.addToCart(goods);
+      }
+    },
     onClick: function onClick(e) {
       if (e.content.text === "购物车") {
         uni.switchTab({
@@ -238,7 +273,7 @@ var _default =
         current: i,
         urls: this.goods_info.pics.map(function (x) {return x.pics_big;}) });
 
-    } } };exports.default = _default;
+    } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

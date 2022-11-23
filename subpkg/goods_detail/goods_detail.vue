@@ -18,47 +18,82 @@
     </view>
     <rich-text :nodes="goods_info.goods_introduce"></rich-text>
     <view class="goods_nav">
-     	<uni-goods-nav :fill="true"  :options="options" :buttonGroup="buttonGroup"  @click="onClick" @buttonClick="buttonClick" />
+      <uni-goods-nav :fill="true" :options="options" :buttonGroup="buttonGroup" @click="onClick"
+        @buttonClick="buttonClick" />
     </view>
   </view>
 </template>
 
 <script>
+  import {
+    mapState,
+    mapMutations,
+    mapGetters
+  } from 'vuex'
   export default {
     data() {
       return {
         goods_info: {},
-        options: [ {
-        			icon: 'shop',
-        			text: '店铺',
-        			infoColor:"red"
-        		}, {
-        			icon: 'cart',
-        			text: '购物车',
-        			info: 2
-        		}],
-        	    buttonGroup: [{
-        	      text: '加入购物车',
-        	      backgroundColor: '#ff0000',
-        	      color: '#fff'
-        	    },
-        	    {
-        	      text: '立即购买',
-        	      backgroundColor: '#ffa200',
-        	      color: '#fff'
-        	    }
-        	    ]	
+        options: [{
+          icon: 'shop',
+          text: '店铺',
+          infoColor: "red"
+        }, {
+          icon: 'cart',
+          text: '购物车',
+          info: 0
+        }],
+        buttonGroup: [{
+            text: '加入购物车',
+            backgroundColor: '#ff0000',
+            color: '#fff'
+          },
+          {
+            text: '立即购买',
+            backgroundColor: '#ffa200',
+            color: '#fff'
+          }
+        ]
       };
     },
     onLoad(options) {
       const goods_id = options.goods_id;
       this.getGoodsDetail(goods_id);
     },
+    computed: {
+      ...mapState('m_cart', []),
+      ...mapGetters('m_cart',['total'])
+    },
+    watch:{
+      total:{
+        handler(newVal){
+          const findResult = this.options.find(x=>x.text==="购物车");
+          if(findResult){
+            findResult.info = newVal;
+          }
+        },
+      immediate:true
+      }
+    },
     methods: {
-      onClick(e){
-        if(e.content.text ==="购物车"){
+      ...mapMutations('m_cart', ['addToCart']),
+      buttonClick(e) {
+        if (e.content.text === "加入购物车") {
+          const goods = {
+            goods_id: this.goods_info.goods_id, // 商品的Id
+            goods_name: this.goods_info.goods_name, // 商品的名称
+            goods_price: this.goods_info.goods_price, // 商品的价格
+            goods_count: 1, // 商品的数量
+            goods_small_logo: this.goods_info.goods_small_logo, // 商品的图片
+            goods_state: true // 商品的勾选状态
+          }
+          this.addToCart(goods);
+        }
+      },
+      onClick(e) {
+        if (e.content.text === "购物车") {
           uni.switchTab({
-            url:'/pages/cart/cart'
+            url: '/pages/cart/cart'
           })
         }
       },
@@ -134,15 +169,17 @@
       maring: 10px 0;
     }
   }
-  .goods_nav{
+
+  .goods_nav {
     position: fixed;
-    bottom:0;
-    left:0;
+    bottom: 0;
+    left: 0;
     width: 100%;
     z-index: 999;
-  
+
   }
-  .goods-detail-container{
+
+  .goods-detail-container {
     padding-bottom: 50px;
   }
 </style>
