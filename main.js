@@ -6,6 +6,7 @@ import store from './store/store.js'
 import { $http } from '@escook/request-miniprogram'
 
 uni.$http = $http;
+// $http.baseUrl = 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata'
 $http.baseUrl = 'https://www.uinav.com'
 uni.$showMsg = function(title="获取资源失败",duration=1500){
   uni.showToast({
@@ -16,9 +17,16 @@ uni.$showMsg = function(title="获取资源失败",duration=1500){
 }
 
 $http.beforeRequest = function(options){
+  console.log(options);
+  console.log('options');
   uni.showLoading({
     title:'数据加载中...'
  });
+ if(options.url.indexOf('/my') !==-1){
+   options.header = {
+     Authorization: store.state.m_user.token,
+   }
+ }
 }
 $http.afterRequest = function(){
  uni.hideLoading()
